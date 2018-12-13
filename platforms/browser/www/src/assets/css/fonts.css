@@ -1,0 +1,19 @@
+/* cousine-regular - latin */
+@font-face {
+  font-family: 'Cousine';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cousine Regular'), local('Cousine-Regular'),
+       url('../fonts/cousine-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/cousine-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* khula-regular - latin */
+@font-face {
+  font-family: 'Khula';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Khula Regular'), local('Khula-Regular'),
+       url('../fonts/khula-v3-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/khula-v3-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
