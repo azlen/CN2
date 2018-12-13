@@ -15,9 +15,6 @@
 		},
 		components: {
 			HeaderComponent,
-		},
-		mount(){
-
 		}
 	}
 </script>
