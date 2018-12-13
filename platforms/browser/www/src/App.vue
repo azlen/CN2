@@ -15,6 +15,7 @@
     #page{
         height: 100%;
         background: #1A1C1B;
+        background: #131415;
 
         display: flex;
         flex-direction: column;
