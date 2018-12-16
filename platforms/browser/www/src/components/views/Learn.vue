@@ -2,9 +2,9 @@
     <div id="page" class="dark">
         <header-component iconleft="chevron" iconright="settings"></header-component>
         <div class="paddedContainer characterInfo">
-        	<div id="character">是</div>
-        	<div id="pronounciation">shì</div>
-        	<div id="definition">is... to be</div> 
+        	<div id="character">{{ character }}</div>
+        	<div id="pronounciation">{{ pinyin }}</div>
+        	<div id="definition">{{ definition }}</div> 
         </div>
         <div class="filler"></div>
     </div>
@@ -12,14 +12,31 @@
 
 <script>
 	import HeaderComponent from './../shared/HeaderComponent.vue'
+	import hanzi from 'hanzi'
 
 	export default {
 		data(){
 			return {
+				character: null,
+				pinyin: null,
+				definition: null,
 			}
 		},
 		components: {
 			HeaderComponent,
+		},
+		methods: {
+			setCharacter(char) {
+				this.character = char;
+
+				var definition = hanzi.definitionLookup(this.character);
+
+				this.pinyin = definition.pinyin;
+				this.definition = definition.definition;
+			}
+		},
+		mounted(){
+			this.setCharacter('你')
 		}
 	}
 </script>
@@ -46,8 +63,7 @@
 		margin-top: 20px;
 	}
 	#definition {
-		font-family: 'Libre Baskerville', sans-serif;
-		font-style: italic;
+		font-family: 'Noto Sans', sans-serif;
 		text-align: center;
 		color: #6C8296;
 		margin-top: 10px;
