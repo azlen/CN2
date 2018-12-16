@@ -1,4 +1,4 @@
-import Vue from'vue'
+import Vue from 'vue'
 import App from './App.vue'
 import i18n from './vue/i18n/index'
 import router from './vue/router/index'
@@ -7,6 +7,7 @@ import './vue/resource/index'
 import './vue/components'
 import './vue/filters'
 import './vue/mixins'
+import VueTouch from 'vue-touch'
 
 new Vue({
     el: "#app",
@@ -15,3 +16,5 @@ new Vue({
     i18n: i18n,
     store: store
 });
+
+Vue.use(VueTouch, {name: 'v-touch'});

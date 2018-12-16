@@ -1,6 +1,6 @@
 <template>
   <header>
-  		<svg class="icon iconLeft" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  		<svg class="icon iconLeft" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" onclick="window.history.back()">
   			<path v-if="iconleft === 'menu'"      d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
             <!--<path v-if="iconleft === 'chevron'"  d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>-->
             <path v-if="iconleft === 'chevron'" d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/>

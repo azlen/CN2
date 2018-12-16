@@ -46,7 +46,7 @@
 		margin-top: 20px;
 	}
 	#definition {
-		font-family: 'Lato', serif;
+		font-family: 'Libre Baskerville', sans-serif;
 		font-style: italic;
 		text-align: center;
 		color: #6C8296;
