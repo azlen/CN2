@@ -17,17 +17,6 @@
         "clean:dist": "rimraf www/dist/*",
         "clean": "npm-run-all clean:platforms clean:dist"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/OmarGM2294/phonegap_simple_vuejs.git"
-    },
-    "keywords": [
-        "cordova:template",
-        "phonegap:template",
-        "Phonegap",
-        "Vue",
-        "cordova"
-    ],
     "browserify": {
         "transform": [
             "babelify",
@@ -37,12 +26,7 @@
     "browser": {
         "vue": "vue/dist/vue.common.js"
     },
-    "author": "Omar Gonzalez",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/OmarGM2294/phonegap_simple_vuejs/issues"
-    },
-    "homepage": "https://github.com/OmarGM2294/phonegap_simple_vuejs#readme",
+    "author": "Azlen Elza",
     "dependencies": {
         "babel-core": "^6.24.0",
         "babel-plugin-transform-runtime": "6.9.0",
