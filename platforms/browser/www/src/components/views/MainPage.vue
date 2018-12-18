@@ -57,7 +57,7 @@
 			}
 		},
 		mounted(){
-			this.updateLanguage(navigator.language || navigator.userLanguage);
+			//this.updateLanguage(navigator.language || navigator.userLanguage);
 			let svgBBox = document.querySelector('#svg').getBoundingClientRect();
 
 			this.svgButton.left.cx = svgBBox.width/2 - 75;
@@ -86,17 +86,17 @@
 
 
 	.svg-button .svg-button-text-zh {
-		font-family: "PL UKai";
+		font-family: "Noto Sans SC";
 		fill: #5ECCDB;
 		text-anchor: middle;
-		font-weight: 100;
-		font-size: 40px;
+		font-weight: 200;
+		font-size: 36px;
 		letter-spacing: -5px;
 
 		pointer-events: none;
 	}
 	.svg-button .svg-button-text-en {
-		font-family: "Lato", serif;
+		font-family: "Noto Sans", serif;
 		font-weight: bold;
 		fill: #FFFFFF;
 		text-anchor: middle;
