@@ -12,7 +12,6 @@
 
 <script>
 	import HeaderComponent from './../shared/HeaderComponent.vue'
-	import hanzi from 'hanzi'
 
 	export default {
 		data(){
@@ -20,23 +19,26 @@
 				character: null,
 				pinyin: null,
 				definition: null,
+				sentences: []
 			}
 		},
 		components: {
 			HeaderComponent,
 		},
 		methods: {
-			setCharacter(char) {
-				this.character = char;
-
-				var definition = hanzi.definitionLookup(this.character);
-
-				this.pinyin = definition.pinyin;
-				this.definition = definition.definition;
+			setCharacterData() {
+				var state = this;
+				this.$http.get('http://192.168.0.18:3001', { body: {} }).then(response => {
+					state.character = response.body.simplified;
+					state.pinyin = response.body.pinyinAccent;
+					state.definition = response.body.definition;
+				}, response => {
+					// error callback
+				});
 			}
 		},
 		mounted(){
-			this.setCharacter('你')
+			this.setCharacterData()
 		}
 	}
 </script>
@@ -50,14 +52,14 @@
 		font-family: 'PL UKai';
 		color: #FFFFFF;
 		font-size: 200px;
-		color: #DA4949;
+		color: #DA2929;
 		text-align: center;
 		margin-top: 30px;
 	}
 	#pronounciation {
 		font-family: sans-serif;
 		font-weight: bold;
-		color: #DA4949;
+		color: #DA2929;
 		font-size: 24px;
 		text-align: center;
 		margin-top: 20px;
