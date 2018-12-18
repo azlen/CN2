@@ -9,4 +9,5 @@
     <access origin="*" />
     <hook src="scripts/build.js" type="before_compile" />
     <hook src="scripts/build.js" type="before_serve" />
+    <preference name="Fullscreen" value="true" />
 </widget>
