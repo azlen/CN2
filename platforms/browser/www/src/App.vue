@@ -22,6 +22,7 @@
         height: 100%;
         background: #1A1C1B;
         background: linear-gradient(180deg, #101211 0%, #101D30 100%), #1A1C1B;
+        background: linear-gradient(180deg, #101211 0%, #101A25 100%), #1A1C1B;
 
         display: flex;
         flex-direction: column;
