@@ -1,68 +1,70 @@
 <template>
-    <div id="page" class="dark">
-        
-        <!--<div class="filler"></div>-->
-        <svg id="svg">
-        	<defs>
+	<div id="page" class="dark">
+		
+		<!--<div class="filler"></div>-->
+		<svg id="svg">
+			<defs>
 				<linearGradient id="gradient" x1="-11" y1="-15" x2="428.095" y2="3.53381" gradientUnits="userSpaceOnUse">
 					<stop stop-color="#1C5FAE"/>
 					<stop offset="1" stop-color="#1AAD81"/>
 				</linearGradient>
 			</defs>
 			
-			<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse">
+			<!--<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse">
 				<circle v-for="circle in circles" :cx="circle.x" :cy="circle.y" :r="circle.r" fill="#000000"></circle>
 			</mask>
 			
-        	<g mask="url(#mask0)">
-        		<rect width="375" height="812" fill="url(#gradient)"/>
-        	</g>
-        
-        	<g class="svg-button">
-        		<!--<path :d="svgButton.connectorPath"/>
-        		<circle :cx="svgButton.left.cx" :cy="svgButton.left.cy" :r="svgButton.left.r"></circle>
-        		<text class="svg-button-text-zh" :x="svgButton.left.cx" :y="svgButton.left.cy + 5">学习</text>
-        		<text class="svg-button-text-en"  :x="svgButton.left.cx" :y="svgButton.left.cy + 25">Review</text>	-->	
-        		
-        		<v-touch tag="circle" :cx="svgButton.x" :cy="svgButton.y" :r="svgButton.r" v-on:tap="learnPage"></v-touch>
-        		<text class="svg-button-text-zh"  :x="svgButton.x" :y="svgButton.y + 5">学</text>	
-        		<text class="svg-button-text-en"  :x="svgButton.x" :y="svgButton.y + 25">Learn</text>	
-        	</g>
-        </svg>
-        <header-component></header-component>
-        <!--<div class="paddedContainer">
-            <button-big to="/" title="学习" description="Review"></button-big>
-            <button-big to="/learn" title="学" description="Learn"></button-big>
-            <button-big to="/" title="Practice" description="141 items to review" class="gradient"></button-big>
-        </div>-->
-    </div>
+			<g mask="url(#mask0)">
+				<rect width="375" height="812" fill="url(#gradient)"/>
+			</g>-->
+
+			<g fill="url(#gradient)">
+				<circle v-for="circle in circles" :cx="circle.x" :cy="circle.y" :r="circle.r"></circle>
+				<path v-for="path in connectors" :d="path"></path>
+			</g>
+		
+			<g class="svg-button">
+				<!--<path :d="svgButton.connectorPath"/>
+				<circle :cx="svgButton.left.cx" :cy="svgButton.left.cy" :r="svgButton.left.r"></circle>
+				<text class="svg-button-text-zh" :x="svgButton.left.cx" :y="svgButton.left.cy + 5">学习</text>
+				<text class="svg-button-text-en"  :x="svgButton.left.cx" :y="svgButton.left.cy + 25">Review</text>	-->	
+				
+				<v-touch tag="circle" :cx="svgButton.x" :cy="svgButton.y" :r="svgButton.r" v-on:tap="learnPage"></v-touch>
+				<!--<text class="svg-button-text-zh"  :x="svgButton.x" :y="svgButton.y + 10">学</text>-->
+				<svg class="svg-button-text-zh" :x="svgButton.x-28" :y="svgButton.y-40" width="57" height="59" viewBox="0 0 57 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M32.212 10.416C31.38 7.664 29.14 3.44 26.9 0.239998L24.212 1.2C26.388 4.4 28.628 8.752 29.396 11.568L32.212 10.416ZM5.204 14.448H52.308V23.472H55.316V11.632H44.052C46.356 8.944 48.852 5.424 50.9 2.352L47.956 1.072C46.292 4.208 43.22 8.688 40.788 11.632H13.652L15.892 10.288C14.804 7.856 12.052 4.08 9.556 1.328L6.996 2.544C9.428 5.296 12.052 9.072 13.268 11.632H2.26V23.472H5.204V14.448ZM56.66 36.784H29.908V33.264C35.796 30.832 42.324 27.248 46.484 23.472L44.436 21.872L43.732 22.064H10.9V24.88H40.276C36.564 27.504 31.38 30.192 26.836 31.792V36.784H0.66V39.664H26.836V54.384C26.836 55.28 26.58 55.6 25.236 55.728C23.956 55.856 19.924 55.856 14.42 55.728C14.996 56.624 15.636 57.776 15.892 58.672C21.908 58.672 25.364 58.672 27.348 58.16C29.268 57.584 29.908 56.624 29.908 54.384V39.664H56.66V36.784Z" fill="#5ECCDB"/>
+				</svg>
+
+				<text class="svg-button-text-en"  :x="svgButton.x" :y="svgButton.y + 37">Learn</text>
+
+				<text style="font-family: 'Lato', sans-serif; text-anchor: middle; font-weight: bold; fill: #12415B; font-size: 14px;"  :x="svgButton.x" :y="svgButton.y + 90">Daily Goal</text>	
+				<text style="font-family: 'Lato', sans-serif; text-anchor: middle; font-weight: bold; fill: #5ECCDB; font-size: 14px;"  :x="svgButton.x" :y="svgButton.y + 108">14 / 20</text>	
+			</g>
+
+			<path class="progress" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
+			<path class="progress" :style="`stroke: url(#gradient); stroke-dasharray: 436; stroke-dashoffset: ${436-436*progress};`" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
+		</svg>
+		<header-component iconleft="menu" iconright="settings"></header-component>
+		<!--<div class="paddedContainer">
+			<button-big to="/" title="学习" description="Review"></button-big>
+			<button-big to="/learn" title="学" description="Learn"></button-big>
+			<button-big to="/" title="Practice" description="141 items to review" class="gradient"></button-big>
+		</div>-->
+	</div>
 </template>
 
 <script>
 	import HeaderComponent from './../shared/HeaderComponent.vue'
-    //import ButtonBig from './../shared/ButtonBig.vue'
-    import metaball from './../../assets/js/metaball.js'
-    import router from './../../vue/router/index.js'
-    
-    let random = {
-    	int: function(a, b) {
-    		return Math.floor(Math.random() * (b - a + 1) + a);
-    	}
-    }
-    
-    function distance(x1, y1, x2, y2) {
-    	var a = x1 - x2;
-		var b = y1 - y2;
-
-		var c = Math.sqrt( a*a + b*b );
-		
-		return c;
-    }
+	//import ButtonBig from './../shared/ButtonBig.vue'
+	import metaball from './../../assets/js/metaball.js'
+	import router from './../../vue/router/index.js'
+	
+	import { distance, random } from './../../assets/js/util.js'
 
 	export default {
 		data(){
 			return {
-				//svgBBox: {},
+				svgBBox: {},
 				/*svgButton: {
 					left: {
 						cx: null,
@@ -81,13 +83,15 @@
 					y: null,
 					r: 70
 				},
-				circles: []
+				circles: [],
+				connectors: [],
+				progress: 14/20,
 				
 			}
 		},
 		components: {
 			HeaderComponent,
-            //ButtonBig
+			//ButtonBig
 		},
 		methods: {
 			learnPage() {
@@ -96,32 +100,33 @@
 		},
 		mounted(){
 			//this.updateLanguage(navigator.language || navigator.userLanguage);
-			let svgBBox = document.querySelector('#svg').getBoundingClientRect();
+			this.svgBBox = document.querySelector('#svg').getBoundingClientRect();
 
-			this.svgButton.x = svgBBox.width/2;
-			this.svgButton.y = svgBBox.height-100;
+			this.svgButton.x = this.svgBBox.width/2;
+			this.svgButton.y = this.svgBBox.height-130;
 			
 			let numCircles = 15;
-			let protection = 5000;
+			let protection = 10000;
 			let counter = 0;
 			
+			this.connectors = [];
 			this.circles = [
-				{ x: this.svgButton.x, y: this.svgButton.y+20, r: this.svgButton.r + 30},
-				{ x: 0, y: svgBBox.height, r: 10 }, // prevent bottom-left corner
-				{ x: svgBBox.width, y: svgBBox.height, r: 10 }, // prevent bottom-right corner
-				{ x: svgBBox.width/2, y: 10, r: 10 }, // prevent under logo
+				{ x: this.svgButton.x, y: this.svgButton.y+20, r: this.svgButton.r + 50},
+				{ x: 0, y: this.svgBBox.height, r: 10 }, // prevent bottom-left corner
+				{ x: this.svgBBox.width, y: this.svgBBox.height, r: 10 }, // prevent bottom-right corner
+				{ x: this.svgBBox.width/2, y: 30, r: 30 }, // prevent under logo
 				{ 
-					x: random.int(svgBBox.width/2 - 100, svgBBox.width/2 + 100),
-					y: random.int(svgBBox.height/2 - 200, svgBBox.height/2 - 100),
+					x: random.int(this.svgBBox.width/2 - 100, this.svgBBox.width/2 + 100),
+					y: random.int(this.svgBBox.height/2 - 200, this.svgBBox.height/2 - 100),
 					r: random.int(80, 120),
 				}
 			];
 			
 			while(this.circles.length < numCircles && counter < protection) {
 				let circle = {
-					x: random.int(0, svgBBox.width),
-					y: random.int(0, svgBBox.height),
-					r: random.int(40, 120)
+					x: random.int(0, this.svgBBox.width),
+					y: random.int(0, this.svgBBox.height),
+					r: random.int(30, 120)
 				}
 				
 				let overlapping = false;
@@ -146,6 +151,26 @@
 			this.circles.shift();
 			this.circles.shift();
 			this.circles.shift();
+
+			let unjoined = this.circles.slice();
+			while (unjoined.length > 1) {
+				let circle1 = unjoined.shift();
+
+				for (let i = 0; i < unjoined.length; i++) {
+					let circle2 = unjoined[i];
+					let d = distance(circle1.x, circle1.y, circle2.x, circle2.y);
+					if (d < circle1.r*2 + circle2.r*2) {
+						unjoined.splice(i, 1);
+
+						this.connectors.push(metaball(
+							circle1.r, circle2.r,
+							[circle1.x, circle1.y],
+							[circle2.x, circle2.y],
+						));
+						break;
+					}
+				}
+			}
 			
 		}
 	}
@@ -172,7 +197,7 @@
 		fill: #5ECCDB;
 		text-anchor: middle;
 		font-weight: 200;
-		font-size: 36px;
+		font-size: 56px;
 		letter-spacing: -5px;
 
 		pointer-events: none;
@@ -180,9 +205,9 @@
 	.svg-button .svg-button-text-en {
 		font-family: "Noto Sans", serif;
 		font-weight: bold;
-		fill: #FFFFFF;
+		fill: #D2E6F4;
 		text-anchor: middle;
-		font-size: 12px;
+		font-size: 15px;
 
 		pointer-events: none;
 	}
@@ -193,5 +218,12 @@
 	}
 	.svg-button circle:active {
 		fill: #22616B;
+	}
+
+	.progress {
+		fill: none;
+		stroke: #132A37;
+		stroke-width: 20px;
+		stroke-linecap: round;
 	}
 </style>
