@@ -20,6 +20,8 @@
 
     #page{
         height: 100%;
+
+        /* Linear gradient fill with solid colour as backup */
         background: #1A1C1B;
         background: linear-gradient(180deg, #101211 0%, #101D30 100%), #1A1C1B;
         background: linear-gradient(180deg, #101211 0%, #101A25 100%), #1A1C1B;

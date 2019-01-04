@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import session from './modules/session'
+import data from './modules/data'
+import options from './modules/options'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    session: session
+    data: data,
+    options: options
   }
 })
