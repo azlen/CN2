@@ -4,11 +4,6 @@ import { mapGetters } from 'vuex'
 
 Vue.mixin({
   methods: {
-    ...mapActions([
-      "updateLanguage"
-    ]),
-    ...mapGetters([
-      "getLanguage"
-    ])
+    
   }
 });

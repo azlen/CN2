@@ -1,7 +1,10 @@
 const state = {
-    theme: 'dark', // [ 'dark', 'light' ] :: NOT IMPLEMENTED
-    textSize: 'medium', // [ 'small', 'medium', 'large' ] :: NOT IMPLEMENTED
-    simplifiedOrTraditional: 'simplified', // [ 'simplified', 'traditional' ] :: NOT IMPLEMENTED
+    theme: 'dark', // [ 'dark', 'light' ]
+    textSize: 'medium', // [ 'small', 'medium', 'large' ]
+    simplifiedOrTraditional: 'simplified', // [ 'simplified', 'traditional' ]
+    silentMode: 'off', // [ 'on', 'off' ]
+    pinyinStyle: 'accent', // [ 'accent', 'number', 'bopofomo' ]
+    toneStyle: 'hanping', // [ ... ]
 }
 
 const getters = {
@@ -9,7 +12,9 @@ const getters = {
 }
 
 const mutations = {
-    
+    setOption(state, changes) {
+        Object.keys(changes).forEach(key => state[key] = changes[key]);
+    }
 }
 
 const actions = {
@@ -17,6 +22,7 @@ const actions = {
 }
 
 export default {
+    namespaced: true,
     state: state,
     getters: getters,
     mutations: mutations,

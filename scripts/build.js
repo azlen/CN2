@@ -1,7 +1,7 @@
 var fs = require('fs');
 var browserify = require('browserify');
 var vueify = require('vueify');
-var sys = require('sys')
+var util = require('util')
 var exec = require('child_process').exec;
 
 console.log("Building...");

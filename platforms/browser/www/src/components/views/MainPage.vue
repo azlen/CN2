@@ -1,5 +1,5 @@
 <template>
-	<div id="page" class="dark">
+	<div id="page" :class="theme">
 		<!-- SVG to render atypical UI components to create a unique interface -->
 		<svg id="svg">
 			<defs>
@@ -50,6 +50,8 @@
 	//import ButtonBig from './../shared/ButtonBig.vue'
 	import metaball from './../../assets/js/metaball.js'
 	import router from './../../vue/router/index.js'
+
+	import { mapState, mapActions } from 'vuex'
 	
 	import { distance, random } from './../../assets/js/util.js'
 
@@ -77,9 +79,15 @@
 				},
 				circles: [],
 				connectors: [],
-				progress: 14/20,
+				progress: 6/20,
 				
 			}
+		},
+		computed: {
+			...mapState('options', {
+				'simplifiedOrTraditional': state => state.simplifiedOrTraditional,
+				'theme': state => state.theme,
+			}),
 		},
 		components: {
 			HeaderComponent,
@@ -87,7 +95,7 @@
 		},
 		methods: {
 			learnPage() {
-				router.push('/learn')
+				router.push('/learn');
 			}
 		},
 		mounted(){

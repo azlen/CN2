@@ -26,12 +26,15 @@
         background: linear-gradient(180deg, #101211 0%, #101D30 100%), #1A1C1B;
         background: linear-gradient(180deg, #101211 0%, #101A25 100%), #1A1C1B;
 
+        color: #FFFFFF;
+
         display: flex;
         flex-direction: column;
     }
 
     #page.light {
         background: #FFFFFF;
+        color: #000000;
     }
 
     .filler {

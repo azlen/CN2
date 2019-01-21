@@ -4,9 +4,9 @@
     "description": "A simple template to use vue with phonegap",
     "main": "index.js",
     "scripts": {
-        "watchify": "watchify -vd -p browserify-hmr -e www/src/main.js -o www/dist/build.js",
-        "serve": "phonegap serve --port 3000 --no-homepage",
-        "dev": "npm-run-all --parallel watchify serve",
+        "dev:watchify": "watchify -vd www/src/main.js -o www/dist/build.js",
+        "dev:serve": "phonegap serve --port 3000 --no-autoreload",
+        "dev": "npm-run-all --parallel dev:watchify dev:serve",
         "build": "cross-env NODE_ENV=production browserify -e www/src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js & cordova build --release --device --target=",
         "test": "karma start karma.conf.js",
         "prepare": "cordova platform add",
@@ -34,31 +34,38 @@
         "babel-preset-stage-2": "^6.22.0",
         "babel-runtime": "6.23.0",
         "browserify": "^14.1.0",
-        "cordova": "^6.5.0",
-        "cordova-plugin-fullscreen": "1.2.0",
+        "browserify-hmr": "^0.3.7",
+        "cordova-android": "7.1.4",
+        "cordova-browser": "^5.0.4",
         "hanzi": "^2.1.0",
-        "phonegap": "^6.4.4",
         "vue": "^2.1.10",
-        "vue-hot-reload-api": "2.0.1",
+        "vue-hot-reload-api": "^2.3.1",
         "vue-i18n": "^6.0.0-alpha.2",
         "vue-resource": "^1.2.0",
         "vue-router": "^2.2.1",
         "vue-swipe": "^2.4.0",
         "vue-touch": "^2.0.0-beta.4",
         "vueify": "~8.5.4",
-        "vuex": "^2.1.2"
+        "vuex": "^2.1.2",
+        "vuex-persist": "^2.0.0"
     },
     "devDependencies": {
         "babelify": "^7.2.0",
         "browserify-css": "^0.14.0",
-        "browserify-hmr": "^0.3.1",
         "cross-env": "^2.0.0",
         "envify": "^3.4.1",
         "http-server": "^0.11.1",
         "npm-run-all": "^2.3.0",
         "proxyquireify": "^3.0.1",
         "uglify-js": "^2.5.0",
-        "watchify": "^3.4.0"
+        "watchify": "^3.11.0"
     },
-    "displayName": "helloworld"
+    "displayName": "helloworld",
+    "cordova": {
+        "platforms": [
+            "browser",
+            "android"
+        ],
+        "plugins": {}
+    }
 }
