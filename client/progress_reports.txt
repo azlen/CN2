@@ -1,0 +1,72 @@
+For cross-platform compatibility, I will be writing the app in HTML + Javascript and running it through Phonegap. This will also allow me to later create a web application reusing mostly the same codebase.
+
+The app will work on a principle of mnemonics, essentially connecting new information (pronounciation, tone, stroke order) to existing structures in the brain through memories or stories. I believe that the most effective connections and mnemonics are ones that you create yourself. This means that instead of rushing through a pile of virtual flashcards, it is more effective to sit with a single piece of information for a longer period of time and work on developing connections and images in your mind. Through my own experiments, the time it takes to visualize and make connections varies from word to word but averages around 2.5 minutes. While this may seem like a long period of time for learners accustomed to quick flashcards, the knowledge lasts much longer. I have found that these two minutes can translate to weeks or months of retaining knowledge versus 1 - 10 minutes with most flashcard applications.
+
+The design goal of the app will be to provide a relaxing interface and guide the user through creating their own connections and mnemonics.
+
+I hope that my memory experiment will be able to improve the way people study and learn languages :)
+
+----
+
+
+Progress Report #2
+
+Quick reminder: what are you building, in a sentence?
+
+Cross-platform app for learning to read/write Chinese and Japanese characters.
+
+Here’s what you planned to do this week: 
+“By the end of next week I will have all of the core features of the app in place. The app will introduce new characters in an optimal order (based on a scientific paper I have been reading -> https://tinyurl.com/y7l3ebfq ) and have exercises to both learn and practice writing.”
+
+What did you accomplish this week? Did you do everything you planned?
+
+Last week I designed the app's layout, this week I implemented the core features
+
+- Exercises arranged in optimal order based on scientific paper
+- Animated stroke order, radical decomposition, example sentences
+- Recruited 13 future alpha testers
+
+VIDEO -> https://is.gd/G9mDLB
+
+What do you want to have done by the end of next week?
+
+By the end of next week I am planning on sending the app to my alpha testers so that I can recieve and act upon their feedback in week #4. This first may involve adding menus, login system, and other features to make the app more usable and customizable.
+
+
+For next week I will prepare the app to be ready for alpha testing! I will be implementing new features (options menu, pronunciations, and tutorial) and polishing up the core systems.
+
+By week #4, I'm planning to release the first alpha version and begin collecting user feedback!
+
+
+---
+
+Cross-platform app for learning to read and write Chinese + Japanese characters!
+
+Last week I implemented the core features, this week I prepared the app for alpha testing:
+- Options menu, pinyin audio pronunciations, tutorial, etc.
+- Created server with API to fetch data for the application
+- Sent app to first group of alpha testers!
+
+
+------
+
+- Developing exercise to draw characters by hand
+- Improved sorting algorithm to determine learning order
+- Fixed bugs with interface lag and animations thanks to user testing
+- Created roadmap for future development and release
+
+ROADMAP + PICS -> https://tinyurl.com/yanet9jp
+
+
+---
+
+- Finish exercise to draw characters by hand 
+- Add more options and settings to menus
+- Add option to switch between traditional and simplified characters
+- Calculate character retention rate compared to typical SRS program
+
+
+------------------------
+
+
+I am working on an AI algorithm that turns a sketch into a fully textured 3d model applicable to fields of design and video game development
