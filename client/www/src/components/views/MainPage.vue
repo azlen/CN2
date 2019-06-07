@@ -32,13 +32,13 @@
 				<text class="svg-button-text-en"  :x="svgButton.x" :y="svgButton.y + 37">Learn</text>
 
 				<!-- Daily goal text; attached to learn button group to keep relative position -->
-				<text style="font-family: 'Lato', sans-serif; text-anchor: middle; font-weight: bold; fill: #12415B; font-size: 14px;"  :x="svgButton.x" :y="svgButton.y + 90">Daily Goal</text>	
-				<text style="font-family: 'Lato', sans-serif; text-anchor: middle; font-weight: bold; fill: #5ECCDB; font-size: 14px;"  :x="svgButton.x" :y="svgButton.y + 108">14 / 20</text>	
+				<text class="daily-goal-text" :x="svgButton.x" :y="svgButton.y + 90">Daily Goal</text>	
+				<text class="daily-progress-text" :x="svgButton.x" :y="svgButton.y + 108">{{ dailyProgress }} / {{ dailyGoal }}</text>	
 			</g>
 
 			<!-- Progress bar arc -->
 			<path class="progress" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
-			<path class="progress" :style="`stroke: url(#gradient); stroke-dasharray: 436; stroke-dashoffset: ${436-436*progress};`" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
+			<path class="progress" :style="`stroke: url(#gradient); stroke-dasharray: 436; stroke-dashoffset: ${436-436*Math.min(dailyProgress/dailyGoal, 1)};`" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
 		</svg>
 		<!-- As the SVG is absolutely positioned, the header needs to be in front of it in the DOM to display -->
 		<header-component iconleft="menu" iconright="settings"></header-component>
@@ -58,19 +58,6 @@
 		data(){
 			return {
 				svgBBox: {},
-				/*svgButton: {
-					left: {
-						cx: null,
-						cy: null,
-						r: 60
-					},
-					right: {
-						cx: null,
-						cy: null,
-						r: 60
-					},
-					connectorPath: null,
-				},*/
 				svgButton: {
 					x: null,
 					y: null,
@@ -78,8 +65,8 @@
 				},
 				circles: [],
 				connectors: [],
-				progress: 6/20,
-				
+				dailyProgress: 5,
+				dailyGoal: 20,
 			}
 		},
 		computed: {
@@ -100,20 +87,39 @@
 		mounted(){
 			//this.updateLanguage(navigator.language || navigator.userLanguage);
 			this.svgBBox = document.querySelector('#svg').getBoundingClientRect();
+			this.svgBBox = document.querySelector('body').getBoundingClientRect();
+
+			//alert(`${this.svgBBox.height}, ${window.screen.height}, ${document.querySelector('body').getBoundingClientRect().height}`);
 
 			this.svgButton.x = this.svgBBox.width/2;
 			this.svgButton.y = this.svgBBox.height-130;
 			
-			let numCircles = 15;
-			let protection = 10000;
-			let counter = 0;
+			let numCircles = 15;     // maximum number of circles
+			let protection = 10000;  // maximum number of iterations
+			let counter = 0;         // count of number of iterations
 			
-			this.connectors = [];
+			this.connectors = [];    // paths of connectors between circles
 			this.circles = [
+				// these first four circles are initialized to prevent new -
+				// circles from being generated in certain key locations
+
+				// these no-go zones are later removed from the array -
+				// so that they are not finally rendered in the SVG
+
 				{ x: this.svgButton.x, y: this.svgButton.y+20, r: this.svgButton.r + 50},
-				{ x: 0, y: this.svgBBox.height, r: 10 }, // prevent bottom-left corner
-				{ x: this.svgBBox.width, y: this.svgBBox.height, r: 10 }, // prevent bottom-right corner
-				{ x: this.svgBBox.width/2, y: 30, r: 30 }, // prevent under logo
+
+				// bottom-left corner
+				{ x: 0, y: this.svgBBox.height, r: 10 },
+
+				// bottom-right corner
+				{ x: this.svgBBox.width, y: this.svgBBox.height, r: 10 },
+
+				// top-middle logo
+				{ x: this.svgBBox.width/2, y: 30, r: 30 },
+
+
+				// this circle is simply an initial "big" circle around the center of the screen
+				// initializing with this constrained circle creates reliably better results
 				{ 
 					x: random.int(this.svgBBox.width/2 - 100, this.svgBBox.width/2 + 100),
 					y: random.int(this.svgBBox.height/2 - 200, this.svgBBox.height/2 - 100),
@@ -121,7 +127,12 @@
 				}
 			];
 			
+			// place circles randomly without overlap
+			// stops if too many cycles do not produce desired result
+
 			while(this.circles.length < numCircles && counter < protection) {
+
+				// the circle is placed at random position with random radius
 				let circle = {
 					x: random.int(0, this.svgBBox.width),
 					y: random.int(0, this.svgBBox.height),
@@ -130,26 +141,36 @@
 				
 				let overlapping = false;
 				
+				// check if circle is too close with any other circle
 				for (var i = 0; i < this.circles.length; i++) {
 					let existing = this.circles[i];
 					let d = distance(circle.x, circle.y, existing.x, existing.y);
+
+					// circles must be at least 40 pixels away from each other
 					if (d < circle.r + existing.r + 40) {
 						overlapping = true;
 						break;
 					}
 				}
 				
+				// add circle to visualization 
 				if (!overlapping) {
 					this.circles.push(circle);      
 				}
 
+				// add to counter to prevent an infinite loop
 				counter++;
 			}
 			
+			// remove first four "guide" circles which exist to prevent new -
+			// circles from being generated in several key locations.
 			this.circles.shift();
 			this.circles.shift();
 			this.circles.shift();
 			this.circles.shift();
+
+
+			// generate metaball connections between nearby circles
 
 			let unjoined = this.circles.slice();
 			while (unjoined.length > 1) {
@@ -177,6 +198,7 @@
 
 <style scoped>
 	#page { z-index: -2;}
+
 	svg {
 		position: absolute;
 		z-index: 0;
@@ -186,10 +208,10 @@
 		height: 100%;
 		flex: 1;
 	}
+
 	.svg-button {
 		fill: #12415B;
 	}
-
 
 	.svg-button .svg-button-text-zh {
 		font-family: "Noto Sans SC";
@@ -221,8 +243,24 @@
 
 	.progress {
 		fill: none;
-		stroke: #132A37;
-		stroke-width: 20px;
+		stroke: #233A47;
+		stroke-width: 15px;
 		stroke-linecap: round;
+	}
+
+	.daily-goal-text {
+		font-family: 'Lato', sans-serif;
+		text-anchor: middle;
+		font-weight: bold;
+		fill: #435A67;
+		font-size: 14px;
+	}
+
+	.daily-progress-text {
+		font-family: 'Lato', sans-serif;
+		text-anchor: middle;
+		font-weight: bold;
+		fill: #5ECCDB;
+		font-size: 14px;
 	}
 </style>

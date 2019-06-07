@@ -33,7 +33,9 @@
 		computed: {
 			...mapState('data', {
 				word(state) {
-					return state.words[this.hanzi];
+					//console.log('HANZI ' + this.hanzi);
+					//console.log(state.words[this.hanzi]);
+					return state.words[this.hanzi] || {};
 				},
 				audio(state) {
 					return new Audio(`http://192.168.0.19:3001/mp3/${state.words[this.hanzi].audioFile}`);

@@ -1,7 +1,7 @@
 <template>
 	<div id="page" :class="theme">
 		<header-component iconleft="chevron" iconright="settings"></header-component>
-		<swipe ref="swipe" :auto="-1" :continuous="false" :show-indicators="false" v-on:change="onChange">
+		<swipe v-if="loaded" ref="swipe" :auto="-1" :continuous="false" :show-indicators="false" v-on:change="onChange">
 			<swipe-item>
 				<learn-mode :hanzi="word" :swipe="$refs.swipe"></learn-mode>
 			</swipe-item>
@@ -38,14 +38,19 @@
 	import { mapState, mapActions } from 'vuex'
 
 	export default {
+		data(){
+			return {
+				loaded: false,
+			}
+		},
 		computed: {
 			...mapState('options', {
 				'simplifiedOrTraditional': state => state.simplifiedOrTraditional,
 				'theme': state => state.theme,
 			}),
 			...mapState('data', {
-				'order': state => state.order,
-				'exercises': state => state.exercises,
+				'learnQueue': state => state.learnQueue,
+				'word': state => '的',
 			})
 		},
 		methods: {
@@ -63,7 +68,10 @@
 				if(newIndex === 4) {
 					alert("test");
 				}
-			}
+			},
+			/*finishedLoading() {
+				loaded = true;
+			}*/
 		},
 		components: {
 			HeaderComponent,
@@ -74,15 +82,21 @@
 		},
 		mounted(){
 			let state = this;
-			/*this.$store.dispatch('data/downloadCharacterData', {
-				'characterArray': this.order,
+
+			this.$store.dispatch('data/downloadCharacterData', {
+				'type': this.simplifiedOrTraditional,
+				'words': this.learnQueue[0],
 				callback() {
-					state.$store.commit('data/setExercises', state.order);
+					//state.$store.commit('data/setExercises', state.order);
+					state.loaded = true;
+
+					console.log("LOADED")
+					console.log(state.$store.words);
 				}
-			})*/
-			this.$store.dispatch('data/initExercises', { type: this.simplifiedOrTraditional, callback() { 
+			})
+			/*this.$store.dispatch('data/initExercises', { type: this.simplifiedOrTraditional, callback() { 
 				
-			 } })
+			} })*/
 		},
 		
 	}

@@ -1,0 +1,159 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fc85cef86a2, pid=8561, tid=0x00007fc85e591380
+#
+# JRE version: OpenJDK Runtime Environment (8.0_191-b12) (build 1.8.0_191-8u191-b12-2ubuntu0.18.04.1-b12)
+# Java VM: OpenJDK 64-Bit Server VM (25.191-b12 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# V  [libjvm.so+0x8e86a2]
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread is native thread
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000000110
+
+Registers:
+RAX=0x0000000000000000, RBX=0x00007fc85e580700, RCX=0x0000000000000000, RDX=0x00007fc85e5916a0
+RSP=0x00007fffce304dd0, RBP=0x00007fffce304e90, RSI=0x00007fffce3054b0, RDI=0x0000000000000001
+R8 =0x00000000000000ca, R9 =0x00007fc85e5809d0, R10=0x0000000000000000, R11=0x0000000000000000
+R12=0x00007fc85e591300, R13=0x0000000000000000, R14=0x00007fffce3054b0, R15=0x00007fffce304ea0
+RIP=0x00007fc85cef86a2, EFLAGS=0x0000000000010246, CSGSFS=0x00000053002b0033, ERR=0x0000000000000000
+  TRAPNO=0x0000000000000000
+
+Top of Stack: (sp=0x00007fffce304dd0)
+0x00007fffce304dd0:   0000004b00000049 00007fffce305280
+0x00007fffce304de0:   00007fffce3052e0 0000000000000000
+0x00007fffce304df0:   00007fc85bcc1f0f 00007fffce304fa0
+0x00007fffce304e00:   00007fc85bcc1708 00007fc85e20e312
+0x00007fffce304e10:   0000000000000000 00007fc85dd572df
+0x00007fffce304e20:   00007fffce3053b0 00007fffce305260
+0x00007fffce304e30:   00007fc85e20e2e0 00007fffce305280
+0x00007fffce304e40:   0000000000000000 00007fc85dd572df
+0x00007fffce304e50:   00007fffce305260 cf0903318a6c5500
+0x00007fffce304e60:   3136353800000000 00007fc85e580700
+0x00007fffce304e70:   0000000000000000 00007fffce3055c0
+0x00007fffce304e80:   0000000000000000 00007fffc6d15180
+0x00007fffce304e90:   00007fffce305628 00007fc85dc2ef20
+0x00007fffce304ea0:   0000000000000000 0000000000000000
+0x00007fffce304eb0:   0000000000000000 0000000000000000
+0x00007fffce304ec0:   0000000000000000 00000000000000ca
+0x00007fffce304ed0:   00007fc85e5809d0 0000000000000000
+0x00007fffce304ee0:   0000000000000000 0000000000000000
+0x00007fffce304ef0:   00007fffce3055c0 0000000000000000
+0x00007fffce304f00:   00007fffc6d15180 00007fc85e5809d0
+0x00007fffce304f10:   0000000000000000 00007fffce305628
+0x00007fffce304f20:   00007fc85e580700 0000000000002184
+0x00007fffce304f30:   fffffffffffffffc 0000000000000000
+0x00007fffce304f40:   00007fffce3055b0 00007fc85d5a8d2d
+0x00007fffce304f50:   0000000000000246 00000053002b0033
+0x00007fffce304f60:   0000000000000000 0000000000000000
+0x00007fffce304f70:   0000000000000000 0000000000000000
+0x00007fffce304f80:   0000000000000000 0000000000000000
+0x00007fffce304f90:   0000000000000000 0000000000000000
+0x00007fffce304fa0:   0000000000000000 0000000000000000
+0x00007fffce304fb0:   0000000000000000 0000000000000000
+0x00007fffce304fc0:   0000000000000000 0000000000000000 
+
+Instructions: (pc=0x00007fc85cef86a2)
+0x00007fc85cef8682:   00 48 89 45 c8 31 c0 e8 22 69 90 ff 44 8b 28 49
+0x00007fc85cef8692:   89 c4 48 8d 05 8d 8e 65 00 8b 38 e8 96 6b 90 ff
+0x00007fc85cef86a2:   48 8b 98 10 01 00 00 8b 83 a8 00 00 00 83 f8 01
+0x00007fc85cef86b2:   74 2c 48 8b 45 c8 64 48 33 04 25 28 00 00 00 45 
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX=0x00007fc85e580700 is pointing into the stack for thread: 0x00007fc85400b000
+RCX=0x0000000000000000 is an unknown value
+RDX=0x00007fc85e5916a0 is an unknown value
+RSP=0x00007fffce304dd0 is an unknown value
+RBP=0x00007fffce304e90 is an unknown value
+RSI=0x00007fffce3054b0 is an unknown value
+RDI=0x0000000000000001 is an unknown value
+R8 =0x00000000000000ca is an unknown value
+R9 =0x00007fc85e5809d0 is pointing into the stack for thread: 0x00007fc85400b000
+R10=0x0000000000000000 is an unknown value
+R11=0x0000000000000000 is an unknown value
+R12=0x00007fc85e591300 is an unknown value
+R13=0x0000000000000000 is an unknown value
+R14=0x00007fffce3054b0 is an unknown value
+R15=0x00007fffce304ea0 is an unknown value
+
+
+Stack: [0x00007fffce20e000,0x00007fffce30e000],  sp=0x00007fffce304dd0,  free space=987k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x8e86a2]
+C  [libc.so.6+0x3ef20]
+
+
+---------------  P R O C E S S  ---------------
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fc854007630] Threads_lock - owner thread: 0x00007fc854081000
+
+Heap:
+ PSYoungGen      total 76288K, used 36706K [0x000000076b500000, 0x0000000770a00000, 0x00000007c0000000)
+  eden space 65536K, 56% used [0x000000076b500000,0x000000076d8d8bb8,0x000000076f500000)
+  from space 10752K, 0% used [0x000000076ff80000,0x000000076ff80000,0x0000000770a00000)
+  to   space 10752K, 0% used [0x000000076f500000,0x000000076f500000,0x000000076ff80000)
+ ParOldGen       total 175104K, used 0K [0x00000006c1e00000, 0x00000006cc900000, 0x000000076b500000)
+  object space 175104K, 0% used [0x00000006c1e00000,0x00000006c1e00000,0x00000006cc900000)
+ Metaspace       used 9938K, capacity 10226K, committed 10368K, reserved 1058816K
+  class space    used 1285K, capacity 1401K, committed 1408K, reserved 1048576K
+
+Card table byte_map: [0x00007fc85a030000,0x00007fc85a822000] byte_map_base: 0x00007fc856a21000
+
+Marking Bits: (ParMarkBitMap*) 0x00007fc85d579340
+ Begin Bits: [0x00007fc8100f0000, 0x00007fc814078000)
+ End Bits:   [0x00007fc814078000, 0x00007fc818000000)
+
+Polling page: 0x00007fc85e5c0000
+
+CodeCache: size=245760Kb used=3186Kb max_used=3186Kb free=242573Kb
+ bounds [0x00007fc845000000, 0x00007fc845320000, 0x00007fc854000000]
+ total_blobs=1260 nmethods=930 adapters=245
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 4.912 Thread 0x00007fc8540ca800  926       3       java.lang.Class::getDeclaredMethod (67 bytes)
+Event: 4.914 Thread 0x00007fc8540ca800 nmethod 926 0x00007fc84531b210 code [0x00007fc84531b480, 0x00007fc84531c138]
+Event: 4.916 Thread 0x00007fc8540ca800  927  s    3       java.util.Vector::elementAt (48 bytes)
+Event: 4.917 Thread 0x00007fc8540ca800 nmethod 927 0x00007fc84531c710 code [0x00007fc84531c920, 0x00007fc84531d4e8]
+Event: 4.917 Thread 0x00007fc8540ca800  928       1       java.util.concurrent.locks.AbstractQueuedSynchronizer::getState (5 bytes)
+Event: 4.917 Thread 0x00007fc8540ca800 nmethod 928 0x00007fc84531da90 code [0x00007fc84531dbe0, 0x00007fc84531dcf0]
+Event: 4.917 Thread 0x00007fc8540ca800  929       1       java.util.concurrent.locks.AbstractOwnableSynchronizer::getExclusiveOwnerThread (5 bytes)
+Event: 4.918 Thread 0x00007fc8540ca800 nmethod 929 0x00007fc84531dd50 code [0x00007fc84531dea0, 0x00007fc84531dfb0]
+Event: 4.918 Thread 0x00007fc8540ca800  930       1       java.util.concurrent.CopyOnWriteArrayList::getArray (5 bytes)
+Event: 4.918 Thread 0x00007fc8540ca800 nmethod 930 0x00007fc84531e010 code [0x00007fc84531e160, 0x00007fc84531e270]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (2 events):
+Event: 1.065 Thread 0x00007fc85400b000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fc84527f594 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 129
+Event: 1.236 Thread 0x00007fc85400b000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fc8451b9618 method=java.lang.String.replace(CC)Ljava/lang/String; @ 26
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 1.270 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d344438) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 1.275 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d364898) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 1.276 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d36d0f0) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 1.278 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d377ce0) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 1.291 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d3950d8) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 1.400 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d3e7d28) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 1.405 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d3f3f80) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 4.908 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d6528d0) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 4.909 Thread 0x00007fc85400b000 Exception <a 'java/lang/NoSuchMethodError': <clinit>> (0x000000076d65bb90) thrown at [/build/openjdk-8-5w_p1G/openjdk-8-8u191-b12/src/hotspot/src/share/vm/prims/jni.cpp, line 1613]
+Event: 4.912 
