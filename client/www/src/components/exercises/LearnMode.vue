@@ -33,8 +33,8 @@
 		computed: {
 			...mapState('data', {
 				word(state) {
-					//console.log('HANZI ' + this.hanzi);
-					//console.log(state.words[this.hanzi]);
+					console.log('HANZI ' + this.hanzi);
+					console.log(state.words);
 					return state.words[this.hanzi] || {};
 				},
 				audio(state) {

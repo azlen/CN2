@@ -9,8 +9,9 @@
         "serve": "cordova serve --port 3000",
         "dev": "npm-run-all --parallel dev:watchify serve:phonegap",
         "dev:android": "npm run watch:android",
+        "dev:browser": "npm run watch:browser",
         "dev:build:js": "browserify -vd www/src/main.js -o www/dist/build.js",
-        "dev:build": "browserify -vd www/src/main.js -o www/dist/build.js  & cordova build --release --device",
+        "dev:build": "browserify -vd www/src/main.js -o www/dist/build.js | cordova build --release --device",
         "build": "cross-env NODE_ENV=production browserify -e www/src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js & cordova build --release --device --target=",
         "test": "karma start karma.conf.js",
         "prepare": "cordova platform add",
@@ -20,7 +21,7 @@
         "clean:platforms": "rimraf platforms/*",
         "clean:dist": "rimraf www/dist/*",
         "clean": "npm-run-all clean:platforms clean:dist",
-        "watch": "nodemon --watch './www' -e html,vue,js,css --ignore ./www/dist --exec 'npm run dev:build'",
+        "watch:browser": "nodemon --watch './www' -e html,vue,js,css --ignore ./www/dist --exec 'npm run dev:build browser'",
         "watch:android": "nodemon --watch './www' -e html,vue,js,css --ignore ./www/dist --exec 'npm-run-all dev:build:js android'"
     },
     "browserify": {
@@ -46,6 +47,7 @@
         "cordova-browser": "^5.0.4",
         "hanzi": "^2.1.0",
         "nodemon": "^1.19.0",
+        "numeric": "^1.2.6",
         "vue": "^2.1.10",
         "vue-hot-reload-api": "^2.3.1",
         "vue-i18n": "^6.0.0-alpha.2",

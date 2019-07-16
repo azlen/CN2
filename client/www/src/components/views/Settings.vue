@@ -1,25 +1,33 @@
 <template>
 	<div id="page" :class="theme">
 		<header-component iconleft="chevron"></header-component>
-        <div class="paddedContainer">
-            <!--<div class="themeChoices">
-				<input id="settings-dark-theme" type="radio" name="theme" value="dark" v-on:change="setOption" :checked="theme === 'dark'">
-				<label id="settings-dark-theme-label" for="settings-dark-theme"><div></div></label>
 
-				<input id="settings-light-theme" type="radio" name="theme" value="light" v-on:change="setOption" :checked="theme === 'light'">
-				<label id="settings-light-theme-label" for="settings-light-theme"><div></div></label>
-			</div>-->
+		<div>
+			<div class="option visualOption">
+				<span class="optionName">Theme</span>
 
-			<div class="selectOption">
+				<div class="visualOptionChoices">
+					<input id="settings-dark-theme" type="radio" name="theme" value="dark" v-on:change="setOption" :checked="theme === 'dark'">
+					<label id="settings-dark-theme-label" for="settings-dark-theme"></label>
+
+					<input id="settings-paper-theme" type="radio" name="theme" value="paper" v-on:change="setOption" :checked="theme === 'paper'">
+					<label id="settings-paper-theme-label" for="settings-paper-theme"></label>
+
+					<input id="settings-light-theme" type="radio" name="theme" value="light" v-on:change="setOption" :checked="theme === 'light'">
+					<label id="settings-light-theme-label" for="settings-light-theme"></label>
+				</div>
+			</div>
+
+			<!--<div class="selectOption">
 				<span class="optionName">Theme</span>
 				<span class="optionValue">{{ theme | capitalize }}</span>
 				<select :value="theme" name="theme" v-on:change="setOption">
 					<option value="dark">Dark</option>
 					<option value="light">Light</option>
 				</select>
-			</div>
+			</div>-->
 
-			<div class="selectOption">
+			<div class="option selectOption">
 				<span class="optionName">Character Set</span>
 				<span class="optionValue">{{ simplifiedOrTraditional | capitalize }}</span>
 				<select :value="simplifiedOrTraditional" name="simplifiedOrTraditional" v-on:change="setOption">
@@ -28,7 +36,7 @@
 				</select>
 			</div>
 
-			<div class="selectOption">
+			<div class="option selectOption">
 				<span class="optionName">Text Size</span>
 				<span class="optionValue">{{ textSize | capitalize }}</span>
 				<select :value="textSize" name="textSize" v-on:change="setOption">
@@ -38,7 +46,7 @@
 				</select>
 			</div>
 
-			<div class="selectOption">
+			<div class="option selectOption">
 				<span class="optionName">Pinyin Style</span>
 				<span class="optionValue">{{ pinyinStyle | capitalize }}</span>
 				<select :value="pinyinStyle" name="pinyinStyle" v-on:change="setOption">
@@ -48,7 +56,7 @@
 				</select>
 			</div>
 
-			<div class="selectOption">
+			<div class="option selectOption">
 				<span class="optionName">Tone Colours</span>
 				<span class="optionValue">{{ toneStyle | capitalize }}</span>
 				<select :value="toneStyle" name="toneStyle" v-on:change="setOption">
@@ -60,7 +68,7 @@
 				</select>
 			</div>
 
-			<div class="selectOption">
+			<div class="option selectOption">
 				<span class="optionName">Silent Mode</span>
 				<span class="optionValue">{{ silentMode | capitalize }}</span>
 				<select :value="silentMode" name="silentMode" v-on:change="setOption">
@@ -68,7 +76,7 @@
 					<option value="off">Off</option>
 				</select>
 			</div>
-        </div>
+		</div>
 	</div>
 </template>
 
@@ -111,39 +119,51 @@
 </script>
 
 <style scoped>
-	/*
-	.themeChoices input {
+	.visualOptionChoices input {
 		display: none;
 	}
-	.themeChoices {
+	.visualOptionChoices {
 		display: flex;
 	}
-	.themeChoices label {
+	.visualOptionChoices label {
 		flex: 1;
 		height: 100px;
-		margin-right: 10px;
-		border-radius: 5px;
-		border: 1px solid #999999;
+		border-radius: 10px;
+		/*border: 1px solid #999999;*/
+		border: 3px solid transparent;
 	}
-	.themeChoices input[checked]+label {
+	.visualOptionChoices input:checked + label {
+		border-color: #1B898F;
+	}
+	.visualOptionChoices label:not(:last-child) {
+		margin-right: 15px;
+	}
+	.visualOptionChoices input[checked]+label {
 		border: 4px solid #999999;
 	}
+
 	#settings-dark-theme+label {
 		background-color: #000000;
-		color: #FFFFFF;
 	}
 	#settings-light-theme+label {
 		background-color: #FFFFFF;
-		color: #000000;
-	}*/
-
-
-	.selectOption {
-		position: relative;
-		padding: 20px 20px;
-		border-bottom: 1px solid rgba(125, 125, 125, 0.3);
-		font-size: 14pt;
 	}
+	#settings-paper-theme+label {
+		background-color: #F1E1A9;
+	}
+
+
+	.option {
+		position: relative;
+		/*border-bottom: 1px solid rgba(125, 125, 125, 0.3);*/
+		font-size: 14pt;
+		padding: 11px 30px 15px 30px;
+	}
+	.option:first-child { margin-top: 29px }
+	/*.option:nth-child(even) { background: rgba(255, 255, 255, 0.1) }
+	#page.paper .option:nth-child(even),
+	#page.light .option:nth-child(even) { background: rgba(0, 0, 0, 0.04) }*/
+
 	.selectOption select {
 		opacity: 0;
 		position: absolute;
@@ -152,10 +172,15 @@
 		width: 100%;
 		height: 100%;
 	}
-	.selectOption .optionName {
-		opacity: 0.3;
+	.optionName {
+		display: block;
+
+		opacity: 0.4;
+		text-transform: uppercase;
+		font-size: 10pt;
+		margin-bottom: 4px;
 	}
-	.selectOption .optionValue {
-		float: right;
+	.optionValue {
+		display: block;
 	}
 </style>

@@ -8,6 +8,6 @@ html, body{
     user-select: none;
 }
 
-.paddedContainer {
+.paddedContainer, .padded-container {
     padding: 30px;
 }

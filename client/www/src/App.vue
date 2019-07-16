@@ -32,6 +32,13 @@
         flex-direction: column;
     }
 
+    #page.paper {
+        background: #F1E1A9;
+        background: linear-gradient(180deg, #F8ECAC 0%, #F1DAB8 100%), #F1E1A9;
+        background: linear-gradient(180deg, #F8ECAC 0%, #F1DAB8 100%), #F1E1A9;
+        color: #000000;
+    }
+
     #page.light {
         background: #FFFFFF;
         color: #000000;

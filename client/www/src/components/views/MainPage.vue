@@ -5,8 +5,17 @@
 			<defs>
 				<!-- Background for metaballs -->
 				<linearGradient id="gradient" x1="-11" y1="-15" x2="428.095" y2="3.53381" gradientUnits="userSpaceOnUse">
-					<stop stop-color="#1C5FAE"/>
-					<stop offset="1" stop-color="#1AAD81"/>
+					<!-- Dark Theme -->
+					<stop v-if="theme == 'dark'" stop-color="#1C5FAE"/>
+					<stop v-if="theme == 'dark'" offset="1" stop-color="#1AAD81"/>
+
+					<!-- Paper Theme -->
+					<stop v-if="theme == 'paper'" stop-color="#52C1D1"/>
+					<stop v-if="theme == 'paper'" offset="1" stop-color="#4E37AA"/>
+
+					<!-- Light Theme -->
+					<stop v-if="theme == 'light'" stop-color="#2689B2"/>
+					<stop v-if="theme == 'light'" offset="1" stop-color="#25CF9C"/>
 				</linearGradient>
 			</defs>
 			
@@ -26,10 +35,10 @@
 				
 				<!-- Chinese character for learning; better to use SVG than import an entire chinese font just for one character -->
 				<svg class="svg-button-text-zh" :x="svgButton.x-28" :y="svgButton.y-40" width="57" height="59" viewBox="0 0 57 59" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M32.212 10.416C31.38 7.664 29.14 3.44 26.9 0.239998L24.212 1.2C26.388 4.4 28.628 8.752 29.396 11.568L32.212 10.416ZM5.204 14.448H52.308V23.472H55.316V11.632H44.052C46.356 8.944 48.852 5.424 50.9 2.352L47.956 1.072C46.292 4.208 43.22 8.688 40.788 11.632H13.652L15.892 10.288C14.804 7.856 12.052 4.08 9.556 1.328L6.996 2.544C9.428 5.296 12.052 9.072 13.268 11.632H2.26V23.472H5.204V14.448ZM56.66 36.784H29.908V33.264C35.796 30.832 42.324 27.248 46.484 23.472L44.436 21.872L43.732 22.064H10.9V24.88H40.276C36.564 27.504 31.38 30.192 26.836 31.792V36.784H0.66V39.664H26.836V54.384C26.836 55.28 26.58 55.6 25.236 55.728C23.956 55.856 19.924 55.856 14.42 55.728C14.996 56.624 15.636 57.776 15.892 58.672C21.908 58.672 25.364 58.672 27.348 58.16C29.268 57.584 29.908 56.624 29.908 54.384V39.664H56.66V36.784Z" fill="#5ECCDB"/>
+					<path d="M32.212 10.416C31.38 7.664 29.14 3.44 26.9 0.239998L24.212 1.2C26.388 4.4 28.628 8.752 29.396 11.568L32.212 10.416ZM5.204 14.448H52.308V23.472H55.316V11.632H44.052C46.356 8.944 48.852 5.424 50.9 2.352L47.956 1.072C46.292 4.208 43.22 8.688 40.788 11.632H13.652L15.892 10.288C14.804 7.856 12.052 4.08 9.556 1.328L6.996 2.544C9.428 5.296 12.052 9.072 13.268 11.632H2.26V23.472H5.204V14.448ZM56.66 36.784H29.908V33.264C35.796 30.832 42.324 27.248 46.484 23.472L44.436 21.872L43.732 22.064H10.9V24.88H40.276C36.564 27.504 31.38 30.192 26.836 31.792V36.784H0.66V39.664H26.836V54.384C26.836 55.28 26.58 55.6 25.236 55.728C23.956 55.856 19.924 55.856 14.42 55.728C14.996 56.624 15.636 57.776 15.892 58.672C21.908 58.672 25.364 58.672 27.348 58.16C29.268 57.584 29.908 56.624 29.908 54.384V39.664H56.66V36.784Z"/>
 				</svg>
 				<!-- English label for learn button -->
-				<text class="svg-button-text-en"  :x="svgButton.x" :y="svgButton.y + 37">Learn</text>
+				<text class="svg-button-text-en"  :x="svgButton.x" :y="svgButton.y + 42">Learn</text>
 
 				<!-- Daily goal text; attached to learn button group to keep relative position -->
 				<text class="daily-goal-text" :x="svgButton.x" :y="svgButton.y + 90">Daily Goal</text>	
@@ -37,11 +46,25 @@
 			</g>
 
 			<!-- Progress bar arc -->
-			<path class="progress" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
+			<path class="progressTrack" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
 			<path class="progress" :style="`stroke: url(#gradient); stroke-dasharray: 436; stroke-dashoffset: ${436-436*Math.min(dailyProgress/dailyGoal, 1)};`" :d="`M ${svgButton.x-65} ${svgButton.y+65} A 92.3 92.3 0 1 1 ${svgButton.x+65} ${svgButton.y+65}`"></path>
 		</svg>
+
 		<!-- As the SVG is absolutely positioned, the header needs to be in front of it in the DOM to display -->
-		<header-component iconleft="menu" iconright="settings"></header-component>
+		<header-component iconleft="menu" iconright="settings" :functionleft="toggleMenu"></header-component>
+
+		<!-- Side Menu -->
+		<div id="close-menu-overlay" :class="menuOpen?'':'hidden'" v-touch:tap="toggleMenu"></div>
+		<div id="menu" :class="menuOpen?'':'hidden'">
+			<div id="menu-header">
+				
+			</div>
+			<div class="menu-item">Profile</div>
+			<div class="menu-item">Statistics</div>
+			<div class="menu-item">Words</div>
+			<div class="menu-item">Practice</div>
+			<div class="menu-item">Settings</div>
+		</div>
 	</div>
 </template>
 
@@ -67,6 +90,8 @@
 				connectors: [],
 				dailyProgress: 5,
 				dailyGoal: 20,
+
+				menuOpen: false,
 			}
 		},
 		computed: {
@@ -82,6 +107,9 @@
 		methods: {
 			learnPage(e) {
 				router.push('/learn');
+			},
+			toggleMenu(e) {
+				this.menuOpen = !this.menuOpen;
 			}
 		},
 		mounted(){
@@ -223,6 +251,9 @@
 
 		pointer-events: none;
 	}
+	#page.paper .svg-button .svg-button-text-zh { fill: #495FBA }
+	#page.light .svg-button .svg-button-text-zh { fill: #6FFF7E }
+
 	.svg-button .svg-button-text-en {
 		font-family: "Noto Sans", serif;
 		font-weight: bold;
@@ -232,6 +263,8 @@
 
 		pointer-events: none;
 	}
+	#page.paper .svg-button .svg-button-text-en { fill: #999999 }
+	#page.light .svg-button .svg-button-text-en { fill: #FFFFFF }
 
 	.svg-button circle {
 		transition: fill .2s ease;
@@ -241,12 +274,19 @@
 		fill: #22616B;
 	}
 
-	.progress {
+	#page.paper .svg-button circle { fill: #FFFFFF }
+	#page.light .svg-button circle { fill: #26B1AB }
+	
+
+	.progress, .progressTrack {
 		fill: none;
-		stroke: #233A47;
 		stroke-width: 15px;
 		stroke-linecap: round;
 	}
+	.progressTrack { stroke: #233A47 }
+
+	#page.paper .progressTrack,
+	#page.light .progressTrack { opacity: 0.2 }
 
 	.daily-goal-text {
 		font-family: 'Lato', sans-serif;
@@ -262,5 +302,72 @@
 		font-weight: bold;
 		fill: #5ECCDB;
 		font-size: 14px;
+	}
+	#page.paper .daily-progress-text { fill: #495FBA }
+
+	#close-menu-overlay {
+		position: absolute;
+		right: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: opacity .17s ease-out .1s, width 0s linear .1s;
+		z-index: 100;
+		opacity: 1;
+		background: rgba(0, 0, 0, 0.5)
+	}
+	#close-menu-overlay.hidden {
+		opacity: 0;
+		width: 0%;
+		transition: opacity .17s ease-out 0s, width 0s linear .17s;
+		/* 
+		`display: none` does not work as pointer event is registered  immediately
+		and thus the menu is not able to open properly
+		*/
+		/*transform: translateX(-100%); */
+	}
+
+	#menu {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 80%;
+		transition: transform .23s ease-out;
+		z-index: 101;
+
+		background: #385761;
+	}
+	#page.paper #menu { background: #4F6EB9 }
+	/*#page.paper #menu { background: #FFFFFF }*/
+
+	#page.light #menu { background: #25BEA1 }
+
+	#menu.hidden {
+		transform: translateX(-100%);
+	}
+
+	#menu-header {
+		width: 100%;
+		height: 110px;
+		background: rgba(255, 255, 255, 0.3);
+		margin-bottom: 10px;
+	}
+
+	.menu-item {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 15px 20px 15px 50px;
+		font-family: "Lato", sans-serif;
+		background-color: transparent;
+		transition: background-color 0.2s ease-out;
+	}
+	#page.paper .menu-item,
+	#page.light .menu-item {
+		color: #FFFFFF;
+	}
+
+	.menu-item:active {
+		background-color: rgba(0, 0, 0, 0.2);
 	}
 </style>

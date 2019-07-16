@@ -8,10 +8,10 @@ Vue.http.options.root = 'https://vuejs.org/'
 Vue.http.interceptor.before = (request, next) => {
   /* eslint-disable no-undef */
 
-  alert(JSON.stringify(request))
+  //alert(JSON.stringify(request))
   next((response) => {
     // $('#loader').css('display', 'none')
 
-    alert(JSON.stringify(response))
+    //alert(JSON.stringify(response))
   })
 }

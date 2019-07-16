@@ -8,13 +8,14 @@
             </defs>
             <g class="immediateOffset" :transform="`translate(${-expand.translate.percx*1024}, ${-expand.translate.percy*1024})`">
                 <g class="shrink" :transform="`scale(${1/expand.scale.x}, ${1/expand.scale.y}) translate(${expand.translate.percx*1024}, ${expand.translate.percy*1024})`">
-                    <g transform="scale(1, -1) translate(-512, -388)">
+                    <!--<g transform="scale(1, -1) translate(-512, -388)">-->
+					<g>
                         <g v-for="group in character.groups">
                             <g v-if="group != undefined" :transform="`translate(${group.offset.x}, ${group.offset.y})`">
-                                <path 
+								<path 
                                     v-for="median in group.medians"
                                     :d="median.path"
-                                    :clip-path="`url(#stroke${character.character}${median.index})`"
+									:clip-path="`url(#stroke${character.character}${median.index})`"
                                     class="stroke"
                                     :style="{
                                         strokeDashoffset: median.totalLength,
